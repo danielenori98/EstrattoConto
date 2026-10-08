@@ -1,0 +1,85 @@
+﻿@model EstrattoConto.Models.ModelloConto
+
+@{
+    ViewData["Title"] = "Estratto Conto Assicurativo";
+}
+
+<div class="container mt-4">
+    <h2>Estratto Conto Previdenziale</h2>
+    <hr />
+
+    <div class="card mb-4 border-primary">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Seleziona Lavoratore</h5>
+            <div class="list-group list-group-horizontal-md">
+                @foreach (var lav in Model.TuttiILavoratori)
+                {
+                    string classeAttiva = (lav.CF == Model.Lavoratore.CF) ? "active" : "";
+                    <a href="?cf=@lav.CF" class="list-group-item list-group-item-action @classeAttiva">
+                        @lav.Cognome @lav.Nome (@lav.CF)
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.ErroreLavoratore != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErroreLavoratore</div>
+    }
+
+    @if (ViewBag.ErroreConto != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErroreConto</div>
+    }
+
+    <div class="card mb-4 bg-light">
+        <div class="card-body">
+            <h5 class="card-title">Dati Anagrafici del Lavoratore</h5>
+            <div class="row">
+                <div class="col-md-3"><strong>Codice Fiscale:</strong> @Model.Lavoratore.CF</div>
+                <div class="col-md-3"><strong>Cognome:</strong> @Model.Lavoratore.Cognome</div>
+                <div class="col-md-3"><strong>Nome:</strong> @Model.Lavoratore.Nome</div>
+                <div class="col-md-3"><strong>Data di Nascita:</strong> @Model.Lavoratore.DataNascita.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Registro dei Contributi Assicurativi</h4>
+    <table class="table table-striped table-bordered mt-2">
+        <thead class="table-dark">
+            <tr>
+                <th>Periodo Dal</th>
+                <th>Periodo Al</th>
+                <th>Tipo Contribuzione</th>
+                <th>Settimane Utili</th>
+                <th>Retribuzione (€)</th>
+                <th>Datore di Lavoro</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Contributi.Count == 0)
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Nessun contributo trovato per questo lavoratore.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var riga in Model.Contributi)
+                {
+                    <tr>
+                        <td>@riga.PeriodoDal.ToString("dd/MM/yyyy")</td>
+                        <td>@riga.PeriodoAl.ToString("dd/MM/yyyy")</td>
+                        <td>@riga.TipoContribuzione</td>
+                        <td>@riga.SettimaneUtili</td>
+                        <td>@riga.Retribuzione.ToString("N2")</td>
+                        <td>@riga.DatoreLavoro</td>
+                        <td>@riga.Note</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

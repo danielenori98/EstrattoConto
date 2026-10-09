@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Homepage";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5 text-center" style="max-width: 700px;">
+    <div class="p-5 mb-4 bg-light rounded-3 border">
+        <h1 class="display-5 fw-bold text-primary">Gestionale</h1>
+        <p class="lead mt-3 text-muted">Benvenuto nel pannello di controllo dell'Estratto Conto Assicurativo. Seleziona l'operazione che desideri effettuare.</p>
+        <hr class="my-4">
+
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+            <a href="/ControllerConto/Index" class="btn btn-primary btn-lg px-4">Visualizza Estratto Conto</a>
+            <a href="/ControllerConto/Nuovo" class="btn btn-success btn-lg px-4">+ Nuovo</a>
+        </div>
+    </div>
 </div>

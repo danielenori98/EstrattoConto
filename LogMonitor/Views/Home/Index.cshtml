@@ -1,0 +1,57 @@
+﻿@model List<LogMonitor.Controllers.LogRiga>
+
+@{
+    ViewData["Title"] = "Monitor dei Log";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Pannello di Controllo Log (Oracle DB)</h2>
+        <a href="/Home/Index" class="btn btn-outline-secondary btn-sm">Aggiorna Lista</a>
+    </div>
+    <p class="text-muted">In questa schermata vengono intercettati in tempo reale i messaggi inviati sulla coda RabbitMQ.</p>
+    <hr />
+
+    @if (ViewBag.Errore != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Errore</div>
+    }
+
+    <table class="table table-hover table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID Log</th>
+                <th>Azione</th>
+                <th>Data e Ora</th>
+                <th>ID Contributo</th>
+                <th>Codice Fiscale</th>
+                <th>Azienda</th>
+                <th>Importo (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Nessun log ricevuto finora. Prova a inserire o modificare un record nell'app EstrattoConto!</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var log in Model)
+                {
+                    string badgeClasse = log.Operazione == "inserito" ? "bg-success" : "bg-warning text-dark";
+                    <tr>
+                        <td>@log.ID</td>
+                        <td><span class="badge @badgeClasse">@log.Operazione</span></td>
+                        <td>@log.DataLog.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        <td>@log.IdRecord</td>
+                        <td>@log.CfLavoratore</td>
+                        <td>@log.DatoreLavoro</td>
+                        <td>@log.Retribuzione.ToString("N2")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

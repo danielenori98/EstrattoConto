@@ -1,0 +1,63 @@
+﻿@model EstrattoConto.Models.ModelloEstrattoConto
+
+@{
+    ViewData["Title"] = "Nuovo";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <h2>Aggiungi Nuovo Contributo</h2>
+
+    @if (ViewBag.Errore != null)
+    {
+        <div class="alert alert-danger mt-3">@ViewBag.Errore</div>
+    }
+
+    <hr />
+
+    <form action="/ControllerConto/Nuovo" method="post">
+        <div class="mb-3">
+            <label class="form-label">Codice Fiscale Lavoratore</label>
+            <input type="text" name="CfLavoratore" class="form-control" value="@Model.CfLavoratore" required maxLength="16" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Periodo Dal</label>
+            <input type="date" name="PeriodoDal" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Periodo Al</label>
+            <input type="date" name="PeriodoAl" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tipo Contribuzione</label>
+            <input type="text" name="TipoContribuzione" class="form-control" value="Lavoro dipendente" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Settimane Utili</label>
+            <input type="number" name="SettimaneUtili" class="form-control" min="1" max="9999" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Retribuzione (€)</label>
+            <input type="number" step="0.01" name="Retribuzione" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Datore di Lavoro</label>
+            <input type="text" name="DatoreLavoro" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Note</label>
+            <input type="text" name="Note" class="form-control" maxlength="255" />
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success">Salva e Invia Notifica</button>
+            <a href="/" class="btn btn-secondary">Annulla</a>
+        </div>
+    </form>
+</div>

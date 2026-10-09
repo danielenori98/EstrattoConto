@@ -1,4 +1,4 @@
-namespace EstrattoConto
+namespace LogMonitor
 {
     public class Program
     {
@@ -8,6 +8,8 @@ namespace EstrattoConto
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddHostedService<LogMonitor.Services.AscoltoRabbit>();
 
             var app = builder.Build();
 

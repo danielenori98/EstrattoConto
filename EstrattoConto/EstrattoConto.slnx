@@ -1,3 +1,12 @@
 <Solution>
-  <Project Path="EstrattoConto.csproj" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="../LogMonitor/LogMonitor.csproj" Id="429d311b-fc29-4d1e-8979-aaefc00ffc84">
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+  <Project Path="EstrattoConto.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
 </Solution>

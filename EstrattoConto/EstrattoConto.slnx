@@ -3,9 +3,7 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="../LogMonitor/LogMonitor.csproj" Id="429d311b-fc29-4d1e-8979-aaefc00ffc84">
-    <Platform Solution="Release|x64" Project="x64" />
-  </Project>
+  <Project Path="../LogMonitor.Worker/LogMonitor.Worker.csproj" Id="1615d682-8ed6-4db3-b22b-d08e55bb5c9a" />
   <Project Path="EstrattoConto.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
